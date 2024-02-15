@@ -4,12 +4,17 @@ A real-time chat application built using Spring Boot for the backend and Angular
 
 ### Home page
 
-![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/119886d8-d745-4ed1-a6d0-ef75fad52598)
+![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/bb53545e-f168-4f3b-83c3-ed2920822fa4)
+
 
 ### Message Sending
 
-![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/50688749-19fb-4562-89d7-6c42f3f2c960)
+![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/74e967f2-36ef-47af-9a09-c174d23533fa)
 
 ### Left the Chat
 
-![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/f210f87a-a7f6-4399-ac33-95187acbe103)
+![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/10aa0d7f-ff93-45b3-ae4f-fb6a550e8e6b)
+
+### Server
+
+![image](https://github.com/bharath-1510/Chat-Application-1/assets/152379838/a1758ace-5548-492f-9e07-d2c61b930e50)
