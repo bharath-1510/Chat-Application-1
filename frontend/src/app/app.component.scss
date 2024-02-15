@@ -1,0 +1,12 @@
+.chat-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .chat-box {
+    margin: 4em;
+    min-width: 50rem;
+  }
+  .card-body {
+    height: 20rem;
+  }
+}
