@@ -6,7 +6,23 @@
   </nav>
 </header>
 <main>
-  <div class="chat-container">
+  <!-- <div class="name-container row" *ngIf="!hidden">
+    <div class="col-8">
+      <input
+        type="text"
+        name="message"
+        id="input-message"
+        [(ngModel)]="content"
+        class="form-control"
+      />
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn btn-primary col-8" (click)="onSubmit()">
+        Submit
+      </button>
+    </div>
+  </div> -->
+  <div class="chat-container" *ngIf="hidden">
     <div class="chat-box">
       <div class="card">
         <div class="card-header">Direct Message</div>
@@ -30,9 +46,10 @@
                   id="input-user"
                   class="form-control"
                   [(ngModel)]="user"
+                  readonly
                 />
               </div>
-              <div class="col-8">
+              <div class="col-6">
                 <input
                   type="text"
                   name="message"
@@ -44,10 +61,19 @@
               <div class="col-2">
                 <button
                   type="submit"
-                  class="btn btn-primary"
+                  class="btn btn-primary col-12"
                   (click)="sendMessage()"
                 >
                   Send
+                </button>
+              </div>
+              <div class="col-2">
+                <button
+                  type="submit"
+                  class="btn btn-danger col-12"
+                  (click)="leaveChat()"
+                >
+                  Leave
                 </button>
               </div>
             </div>

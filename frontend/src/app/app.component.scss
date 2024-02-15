@@ -3,10 +3,17 @@
   justify-content: center;
   align-items: center;
   .chat-box {
-    margin: 4em;
+    margin: 3em;
     min-width: 50rem;
   }
   .card-body {
     height: 20rem;
   }
+}
+.name-container {
+  padding: 20px;
+  display: flex;
+  width: 99%;
+  justify-content: center;
+  align-items: center;
 }

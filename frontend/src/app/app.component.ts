@@ -14,18 +14,42 @@ export class AppComponent {
   user: string = '';
   content: string = '';
   webSocket = new WebSocketService();
+  hidden: boolean = false;
+
   sendMessage() {
     const chatMsg = {
       name: this.user,
       content: this.content,
+      type: 'CHAT',
     } as Chat;
     this.webSocket.sendWebSocketMessage(chatMsg);
     this.content = '';
   }
-  ngOnInit(): void {
-    this.webSocket.openWebsocketConnection();
+  openConnection() {
+    let tmp = window.prompt('Enter the Name');
+
+    if (tmp && tmp.trim() !== '') {
+      this.user = tmp;
+      const chatMsg = {
+        name: this.user,
+        content: this.content,
+        type: 'JOIN',
+      } as Chat;
+      this.webSocket.openWebsocketConnection(chatMsg);
+      this.hidden = true;
+    } else this.openConnection();
   }
-  ngOnDestroy(): void {
-    this.webSocket.closeWebsocketConnection();
+  ngOnInit(): void {
+    this.openConnection();
+  }
+  ngOnDestroy(): void {}
+  leaveChat() {
+    const chatMsg = {
+      name: this.user,
+      content: this.content,
+      type: 'LEAVE',
+    } as Chat;
+    this.webSocket.sendWebSocketMessage(chatMsg);
+    // this.webSocket.closeWebsocketConnection();
   }
 }
