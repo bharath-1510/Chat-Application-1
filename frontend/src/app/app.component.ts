@@ -1,21 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 import { Chat } from './model/chat.model';
 import { WebSocketService } from './web-socket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
+  ngOnDestroy(): void {}
   title = 'chat-app';
   user: string = '';
   content: string = '';
   webSocket = new WebSocketService();
   hidden: boolean = false;
-
   sendMessage() {
     const chatMsg = {
       name: this.user,
@@ -42,7 +43,6 @@ export class AppComponent {
   ngOnInit(): void {
     this.openConnection();
   }
-  ngOnDestroy(): void {}
   leaveChat() {
     const chatMsg = {
       name: this.user,
@@ -50,6 +50,8 @@ export class AppComponent {
       type: 'LEAVE',
     } as Chat;
     this.webSocket.sendWebSocketMessage(chatMsg);
-    // this.webSocket.closeWebsocketConnection();
+    this.webSocket.closeWebsocketConnection();
+    this.hidden = false;
   }
+  refresh() {}
 }

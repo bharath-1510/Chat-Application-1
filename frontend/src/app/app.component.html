@@ -6,22 +6,7 @@
   </nav>
 </header>
 <main>
-  <!-- <div class="name-container row" *ngIf="!hidden">
-    <div class="col-8">
-      <input
-        type="text"
-        name="message"
-        id="input-message"
-        [(ngModel)]="content"
-        class="form-control"
-      />
-    </div>
-    <div class="col-2">
-      <button type="submit" class="btn btn-primary col-8" (click)="onSubmit()">
-        Submit
-      </button>
-    </div>
-  </div> -->
+  <div class="refresh-container" *ngIf="!hidden">REFRESH THE PAGE</div>
   <div class="chat-container" *ngIf="hidden">
     <div class="chat-box">
       <div class="card">
@@ -69,7 +54,7 @@
               </div>
               <div class="col-2">
                 <button
-                  type="submit"
+                  type="button"
                   class="btn btn-danger col-12"
                   (click)="leaveChat()"
                 >
