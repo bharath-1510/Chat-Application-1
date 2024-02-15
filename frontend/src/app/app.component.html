@@ -1,69 +1,57 @@
 <header>
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Angular Chat Application</span>
-    </div>
-  </nav>
+  <h1>Angular Chat Application</h1>
 </header>
 <main>
   <div class="refresh-container" *ngIf="!hidden">REFRESH THE PAGE</div>
   <div class="chat-container" *ngIf="hidden">
     <div class="chat-box">
-      <div class="card">
-        <div class="card-header">Direct Message</div>
-        <div class="card-body">
-          <ul class="list-group list-group-flush">
-            <li
-              class="list-group-item"
-              *ngFor="let message of webSocket.messages"
-            >
-              <span> {{ message.name }}: {{ message.content }}</span>
-            </li>
-          </ul>
-        </div>
-        <div class="card-footer">
-          <form>
-            <div class="chat-send row">
-              <div class="col-2">
-                <input
-                  type="text"
-                  name="user"
-                  id="input-user"
-                  class="form-control"
-                  [(ngModel)]="user"
-                  readonly
-                />
-              </div>
-              <div class="col-6">
-                <input
-                  type="text"
-                  name="message"
-                  id="input-message"
-                  [(ngModel)]="content"
-                  class="form-control"
-                />
-              </div>
-              <div class="col-2">
-                <button
-                  type="submit"
-                  class="btn btn-primary col-12"
-                  (click)="sendMessage()"
-                >
-                  Send
-                </button>
-              </div>
-              <div class="col-2">
-                <button
-                  type="button"
-                  class="btn btn-danger col-12"
-                  (click)="leaveChat()"
-                >
-                  Leave
-                </button>
-              </div>
+      <h5>Direct Message</h5>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li
+            class="list-group-item"
+            *ngFor="let message of webSocket.messages"
+          >
+            <span> {{ message.name }}: {{ message.content }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <form>
+          <div class="chat-send row">
+            <div class="col-3">
+              <input
+                type="text"
+                name="user"
+                id="input-user"
+                class="form-control"
+                [(ngModel)]="user"
+                readonly
+              />
             </div>
-          </form>
-        </div>
+            <div class="col-9">
+              <input
+                type="text"
+                name="message"
+                id="input-message"
+                [(ngModel)]="content"
+                class="form-control"
+              />
+            </div>
+          </div>
+          <div class="button-group">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="sendMessage()"
+            >
+              Send
+            </button>
+            <button type="button" class="btn btn-danger" (click)="leaveChat()">
+              Leave
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
