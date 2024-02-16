@@ -40,7 +40,6 @@ public class ChatHandler extends TextWebSocketHandler {
                 return;
             } else
                 users.add(chat.getName());
-
             chat.setContent("Connected to the Chat Room");
         }
         if (type.name().equals("LEAVE"))

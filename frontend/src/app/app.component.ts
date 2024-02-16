@@ -18,16 +18,21 @@ export class AppComponent implements OnDestroy {
   webSocket = new WebSocketService();
   header = 'REFRESH THE PAGE';
   hidden: boolean = false;
-  sendMessage(type: number) {
+  async sendMessage(type: number) {
     const chatMsg = {
       name: this.user,
       content: this.content,
       type: type,
     } as Chat;
     this.webSocket.sendWebSocketMessage(chatMsg);
-    console.log(this.webSocket.messages);
-
+    await delay(500);
+    if (this.webSocket.messages.length === 0) {
+      this.header = 'USER ALREADY EXISTS\nREFRESH THE PAGE';
+      this.hidden = false;
+      return;
+    }
     this.content = '';
+    this.hidden = true;
   }
   async openConnection() {
     let tmp = window.prompt('Enter the Name');
@@ -36,9 +41,8 @@ export class AppComponent implements OnDestroy {
       this.user = tmp;
       this.webSocket.openWebsocketConnection();
       this.header = 'Waiting for connection from the Server';
-      await delay(5000);
+      await delay(2000);
       this.sendMessage(0);
-      this.hidden = true;
     } else this.openConnection();
   }
   ngOnInit(): void {
