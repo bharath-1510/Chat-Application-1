@@ -12,14 +12,14 @@
             class="list-group-item"
             *ngFor="let message of webSocket.messages"
           >
-            <span> {{ message.name }}: {{ message.content }}</span>
+            <span> {{ message.name }} : {{ message.content }}</span>
           </li>
         </ul>
       </div>
       <div class="card-footer">
         <form>
           <div class="chat-send row">
-            <div class="col-3">
+            <div class="col-2">
               <input
                 type="text"
                 name="user"
@@ -29,7 +29,7 @@
                 readonly
               />
             </div>
-            <div class="col-9">
+            <div class="col-10">
               <input
                 type="text"
                 name="message"

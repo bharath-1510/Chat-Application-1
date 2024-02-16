@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Chat } from './model/chat.model';
 import { WebSocketService } from './web-socket.service';
 import { Router } from '@angular/router';
+import { MessageType } from './model/type';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +22,7 @@ export class AppComponent implements OnDestroy {
     const chatMsg = {
       name: this.user,
       content: this.content,
-      type: 'CHAT',
+      type: MessageType.CHAT,
     } as Chat;
     this.webSocket.sendWebSocketMessage(chatMsg);
     this.content = '';
@@ -34,7 +35,7 @@ export class AppComponent implements OnDestroy {
       const chatMsg = {
         name: this.user,
         content: this.content,
-        type: 'JOIN',
+        type: MessageType.JOIN,
       } as Chat;
       this.webSocket.openWebsocketConnection(chatMsg);
       this.hidden = true;
@@ -47,7 +48,7 @@ export class AppComponent implements OnDestroy {
     const chatMsg = {
       name: this.user,
       content: this.content,
-      type: 'LEAVE',
+      type: MessageType.LEAVE,
     } as Chat;
     this.webSocket.sendWebSocketMessage(chatMsg);
     this.webSocket.closeWebsocketConnection();
