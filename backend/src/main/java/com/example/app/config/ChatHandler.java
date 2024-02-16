@@ -33,9 +33,12 @@ public class ChatHandler extends TextWebSocketHandler {
         MessageDTO chat = objectMapper.readValue(payload, MessageDTO.class);
         MessageType type = chat.getType();
         if (type.name().equals("JOIN")) {
-            if (users.contains(chat.getName()))
-                throw new Exception("User already Exists");
-            else
+            if (users.contains(chat.getName())) {
+                chat.setContent("User Already Exists");
+                chat.setType(MessageType.LEAVE);
+                session.sendMessage(new TextMessage(objectMapper.writeValueAsString(chat)));
+                return;
+            } else
                 users.add(chat.getName());
 
             chat.setContent("Connected to the Chat Room");

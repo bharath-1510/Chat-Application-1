@@ -2,7 +2,7 @@
   <h1>Angular Chat Application</h1>
 </header>
 <main>
-  <div class="refresh-container" *ngIf="!hidden">REFRESH THE PAGE</div>
+  <div class="refresh-container" *ngIf="!hidden">{{ header }}</div>
   <div class="chat-container" *ngIf="hidden">
     <div class="chat-box">
       <h5>Direct Message</h5>
@@ -43,7 +43,7 @@
             <button
               type="submit"
               class="btn btn-primary"
-              (click)="sendMessage()"
+              (click)="sendMessage(1)"
             >
               Send
             </button>

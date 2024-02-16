@@ -13,31 +13,31 @@ import { MessageType } from './model/type';
 })
 export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {}
-  title = 'chat-app';
   user: string = '';
   content: string = '';
   webSocket = new WebSocketService();
+  header = 'REFRESH THE PAGE';
   hidden: boolean = false;
-  sendMessage() {
+  sendMessage(type: number) {
     const chatMsg = {
       name: this.user,
       content: this.content,
-      type: MessageType.CHAT,
+      type: type,
     } as Chat;
     this.webSocket.sendWebSocketMessage(chatMsg);
+    console.log(this.webSocket.messages);
+
     this.content = '';
   }
-  openConnection() {
+  async openConnection() {
     let tmp = window.prompt('Enter the Name');
 
     if (tmp && tmp.trim() !== '') {
       this.user = tmp;
-      const chatMsg = {
-        name: this.user,
-        content: this.content,
-        type: MessageType.JOIN,
-      } as Chat;
-      this.webSocket.openWebsocketConnection(chatMsg);
+      this.webSocket.openWebsocketConnection();
+      this.header = 'Waiting for connection from the Server';
+      await delay(5000);
+      this.sendMessage(0);
       this.hidden = true;
     } else this.openConnection();
   }
@@ -45,14 +45,12 @@ export class AppComponent implements OnDestroy {
     this.openConnection();
   }
   leaveChat() {
-    const chatMsg = {
-      name: this.user,
-      content: this.content,
-      type: MessageType.LEAVE,
-    } as Chat;
-    this.webSocket.sendWebSocketMessage(chatMsg);
+    this.sendMessage(2);
     this.webSocket.closeWebsocketConnection();
     this.hidden = false;
   }
   refresh() {}
+}
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

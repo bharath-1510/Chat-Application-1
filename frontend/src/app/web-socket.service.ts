@@ -8,11 +8,9 @@ export class WebSocketService {
   webSocket!: WebSocket;
   messages: Chat[] = [];
   constructor() {}
-  openWebsocketConnection(chatMsg: Chat) {
+  openWebsocketConnection() {
     this.webSocket = new WebSocket('ws://localhost:8080/chat');
-    this.webSocket.onopen = (e) => {
-      this.webSocket.send(JSON.stringify(chatMsg));
-    };
+    this.webSocket.onopen = (e) => {};
     this.webSocket.onmessage = (e) => {
       const chatMsg = JSON.parse(e.data);
       this.messages.push(chatMsg);
