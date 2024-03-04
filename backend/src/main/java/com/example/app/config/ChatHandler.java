@@ -14,7 +14,6 @@ import java.util.Set;
 
 
 @Slf4j
-
 public class ChatHandler extends TextWebSocketHandler {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
